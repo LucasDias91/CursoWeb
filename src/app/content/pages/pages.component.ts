@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {  Router } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-pages',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PagesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router,
+              private authService: AuthService) { }
 
   ngOnInit() {
+
+    var _isAuthorized = this.authService.isAuthorized();
+
+    if(!_isAuthorized){
+      this.router.navigateByUrl('auth/login');
+    }
   }
 
 }

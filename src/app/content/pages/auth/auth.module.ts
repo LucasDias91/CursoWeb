@@ -6,13 +6,14 @@ import { AuthRegistroComponent } from './auth-registro/auth-registro.component';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { UsuariosService } from 'src/app/core/services/usuarios.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @NgModule({
   declarations: [AuthComponent, AuthLoginComponent, AuthRegistroComponent],
   imports: [
 		FormsModule,
 		ReactiveFormsModule,
-		HttpClientModule,
+		
     RouterModule.forChild([
 			{
 				path: '',
@@ -30,6 +31,6 @@ import { HttpClientModule } from '@angular/common/http';
 			}
 		])
 	],
-	providers: [UsuariosService]
+	providers: [AuthService,UsuariosService,HttpClientModule]
 })
 export class AuthModule { }
