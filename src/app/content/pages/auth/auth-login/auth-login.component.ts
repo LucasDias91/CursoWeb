@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Login } from 'src/app/core/molders/login';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { Router } from '@angular/router';
+import { Notice } from 'src/app/core/molders/notice';
 
 @Component({
   selector: 'app-auth-login',
@@ -10,12 +12,13 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class AuthLoginComponent implements OnInit {
   form: FormGroup;
+  notice: Notice = new Notice();
 
   constructor(private fb: FormBuilder,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit() {
-    //Criando o formulário;
     this.createForm();
   }
 
@@ -43,8 +46,12 @@ export class AuthLoginComponent implements OnInit {
   login(login: Login){
     this.authService.postLogin(login)
           .subscribe((data)=>{
-            
-          })
+            this.notice.class = "success";
+            this.notice.msg = "usuário logado!";
+          },(error)=>{
+            this.notice.class = "danger";
+            this.notice.msg = error.error.error_description;
+          });
           
   }
 
