@@ -20,13 +20,13 @@ const routes: Routes = [
 		children: [
 			{
 				path: 'hospitais',
-				loadChildren: './hospitais/hospitais.module#HospitaisModule'
+				//loadChildren: './hospitais/hospitais.module#HospitaisModule'
 			}
 
 		]
 	},
 	{
-		path: 'login',
+		path: 'auth',
 		//canActivate: [NgxPermissionsGuard],
 		loadChildren: './auth/auth.module#AuthModule',
 		data: {
