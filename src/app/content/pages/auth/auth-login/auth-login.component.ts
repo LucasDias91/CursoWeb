@@ -29,6 +29,13 @@ export class AuthLoginComponent implements OnInit {
     });
   }
 
+  clearNotice(){
+    if(this.notice){
+      this.notice.class = null;
+      this.notice.msg = null;
+    }
+  }
+
   prepareLogin(): Login{
     const _controls = this.form.controls;
     const _login = new Login();
@@ -40,7 +47,7 @@ export class AuthLoginComponent implements OnInit {
 
   onSubmit(){
     const _login = this.prepareLogin();
-    this.login(_login)
+    this.login(_login);
   }
 
   login(login: Login){
@@ -52,7 +59,6 @@ export class AuthLoginComponent implements OnInit {
             this.notice.class = "danger";
             this.notice.msg = error.error.error_description;
           });
-          
   }
 
 }

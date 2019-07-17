@@ -34,6 +34,7 @@ export class AuthRegistroComponent implements OnInit {
     this.postUsuario(_usuarioAdd);
   }
 
+
   postUsuario(usuarioAdd: Usuarios){
     this.usuariosService.postUsuario(usuarioAdd)
            .subscribe((msg)=>{

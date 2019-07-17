@@ -7,13 +7,16 @@ import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { UsuariosService } from 'src/app/core/services/usuarios.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from 'src/app/core/services/auth.service';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [AuthComponent, AuthLoginComponent, AuthRegistroComponent],
   imports: [
 		FormsModule,
 		ReactiveFormsModule,
-		
+		MatFormFieldModule,
+		MatInputModule,
     RouterModule.forChild([
 			{
 				path: '',
