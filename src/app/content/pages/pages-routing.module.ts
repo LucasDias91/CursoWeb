@@ -34,7 +34,7 @@ const routes: Routes = [
 				except: 'ADMIN'
 			}
 		},
-	},
+	}
 ];
 
 @NgModule({
