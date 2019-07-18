@@ -13,7 +13,6 @@ const API_URL = environment.API_URL + "/api/usuarios"
 export class UsuariosService {
 
   constructor(private http: HttpClient) { }
-
   postUsuario(usuarioAdd: Usuarios): Observable<any>{
 		return this.http.post<any>(API_URL, usuarioAdd).pipe(
 			map((result: any) => {
