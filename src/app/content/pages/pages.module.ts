@@ -11,10 +11,8 @@ import { AuthService } from 'src/app/core/services/auth.service';
   declarations: [PagesComponent],
   imports: [
     CommonModule,
-    PagesRoutingModule,
-    HttpClientModule
-  ],
-  providers:[AuthService]
+    PagesRoutingModule
+  ]
 })
 export class PagesModule { }
  

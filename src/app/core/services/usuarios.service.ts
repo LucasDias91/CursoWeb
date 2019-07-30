@@ -3,7 +3,7 @@ import { map, catchError } from 'rxjs/operators'; // biblioteca do observable (r
 import { HttpClient } from '@angular/common/http'; // biblioteca para fazer requisição http
 import {  Observable, throwError } from 'rxjs'; // biblioteca do observable (requisição)
 import { environment } from './../../../environments/environment'; // endereço da api
-import { Usuarios } from '../molders/usuarios';
+import { Usuarios } from '../models/usuarios';
 
 const API_URL = environment.API_URL + "/api/usuarios"
 
@@ -13,8 +13,10 @@ const API_URL = environment.API_URL + "/api/usuarios"
 export class UsuariosService {
 
   constructor(private http: HttpClient) { }
-  postUsuario(usuarioAdd: Usuarios): Observable<any>{
-		return this.http.post<any>(API_URL, usuarioAdd).pipe(
+
+  postUsuario(usuarioAdd: Usuarios): Observable<Usuarios[]>{
+		return this.http.post<any>(API_URL, usuarioAdd)
+		.pipe(
 			map((result: any) => {
 				return result;
 			}),

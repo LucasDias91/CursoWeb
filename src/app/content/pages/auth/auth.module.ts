@@ -34,6 +34,6 @@ import {MatInputModule} from '@angular/material/input';
 			}
 		])
 	],
-	providers: [AuthService,UsuariosService,HttpClientModule]
+	providers: [AuthService, UsuariosService]
 })
 export class AuthModule { }

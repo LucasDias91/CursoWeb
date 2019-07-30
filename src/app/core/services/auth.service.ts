@@ -3,7 +3,7 @@ import { map, catchError } from 'rxjs/operators'; // biblioteca do observable (r
 import { HttpClient, HttpHeaders } from '@angular/common/http'; // biblioteca para fazer requisição http
 import {  Observable, throwError } from 'rxjs'; // biblioteca do observable (requisição)
 import { environment } from './../../../environments/environment'; // endereço da api
-import { Login } from '../molders/login';
+import { Login } from '../models/login';
 
 const API_URL = environment.API_URL + "api/token";
 

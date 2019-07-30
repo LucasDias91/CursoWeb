@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { Usuarios } from 'src/app/core/molders/usuarios';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UsuariosService } from 'src/app/core/services/usuarios.service';
 
 @Component({
@@ -9,7 +8,6 @@ import { UsuariosService } from 'src/app/core/services/usuarios.service';
   styleUrls: ['./auth-registro.component.scss']
 })
 export class AuthRegistroComponent implements OnInit {
-
   form: FormGroup;
 
   constructor(private fb: FormBuilder,
@@ -21,35 +19,17 @@ export class AuthRegistroComponent implements OnInit {
 
   createForm(){
     this.form = this.fb.group({
-      'nome': ["",Validators.required],
-      'telefone':  [""],
-      'email':  [""],
-      'usuario': ["",Validators.required],
-      'senha':  ["",Validators.required],
+      'nome': ['', Validators.required],
+      'usuario': ['', Validators.required],
+      'senha':['', Validators.required],
+      'telefone': [''],
+      'email': ['']
     })
   }
 
   onSubmit(){
-    const _usuarioAdd = this.prepareUsuario();
-    this.postUsuario(_usuarioAdd);
+     console.log('salvo!!!')
   }
 
 
-  postUsuario(usuarioAdd: Usuarios){
-    this.usuariosService.postUsuario(usuarioAdd)
-           .subscribe((msg)=>{
-            console.log(msg);
-           });
-  }
-
-  prepareUsuario(): Usuarios{
-    const _controls = this.form.controls;
-    const _usuarioAdd = new Usuarios();
-    _usuarioAdd.nome = _controls['nome'].value;
-    _usuarioAdd.telefone = _controls['telefone'].value;
-    _usuarioAdd.email = _controls['email'].value;
-    _usuarioAdd.usuario = _controls['usuario'].value;
-    _usuarioAdd.senha = _controls['senha'].value;
-    return _usuarioAdd;
-  }
 }

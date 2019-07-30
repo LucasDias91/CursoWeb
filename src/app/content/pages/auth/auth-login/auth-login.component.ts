@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Login } from 'src/app/core/molders/login';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
-import { Notice } from 'src/app/core/molders/notice';
+import { Notice } from 'src/app/core/models/notice';
+import { Login } from 'src/app/core/models/login';
 
 @Component({
   selector: 'app-auth-login',
@@ -29,13 +29,6 @@ export class AuthLoginComponent implements OnInit {
     });
   }
 
-  clearNotice(){
-    if(this.notice){
-      this.notice.class = null;
-      this.notice.msg = null;
-    }
-  }
-
   prepareLogin(): Login{
     const _controls = this.form.controls;
     const _login = new Login();
@@ -47,18 +40,17 @@ export class AuthLoginComponent implements OnInit {
 
   onSubmit(){
     const _login = this.prepareLogin();
-    this.login(_login);
+    this.doLogin(_login);
   }
 
-  login(login: Login){
-    this.authService.postLogin(login)
-          .subscribe((data)=>{
-            this.notice.class = "success";
-            this.notice.msg = "usuário logado!";
-          },(error)=>{
-            this.notice.class = "danger";
-            this.notice.msg = error.error.error_description;
-          });
+  doLogin(login: Login){
+      this.authService.postLogin(login)
+           .subscribe((data)=>{
+             localStorage.setItem("accessToken", data.access_token);
+             window.alert("Usuario logado");
+           },(error)=>{
+             window.alert(error.error.error_description)
+           })
   }
 
 }
